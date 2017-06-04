@@ -35,7 +35,7 @@ e.g. The killing or saving of the monster is based on a pseudo random value
 played with both hands on a standard QWERTY-keyboard these keys are on extreme left and right side of middle row.
 This makes playing very convenient with the left hand focusing on A and right focusing on L
 
-4 - How did I choose BLUE and WHITE combo? 
+4 - Why did I choose BLUE and WHITE combo for UI? 
 Based on the site - http://blog.usabilla.com/how-to-design-for-color-blindness/ 
 This site (and many other resources) lists the different combo of colors which should be avoided
 to make the UI friendly for color blind people. BLUE appears the same for different types of color blind people
