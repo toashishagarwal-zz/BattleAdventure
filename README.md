@@ -55,6 +55,8 @@ to make the UI friendly for color blind people. BLUE appears the same for differ
    * static methods
     
 7 - Though Java 8 jdk has been used I could not use many Java 8 features like Lambdas, Streams, etc because 
-Cobertura, the code coverage tool does not support java 8 features thereby affecting the coverage reports adversely.  
+Cobertura, the code coverage tool does not support java 8 features thereby affecting the coverage reports adversely
+
+8 - The coverage for ObjectSerializer.java is actually 100% when checked in IntelliJ. Somehow cobertura is reporting it as 21%. Not sure why this weird behaviour for this single class 
 
 
