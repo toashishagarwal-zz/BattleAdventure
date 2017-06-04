@@ -39,7 +39,6 @@ public class ApplicationContextUnitTest {
 	@Test
 	public void shouldInstantiate() {
 		when(s.explore()).thenReturn(0);
-		when(RandomGenerator.getRandomNumber(5)).thenReturn(0);
 		ac = new ApplicationContext();
 
 		Assert.assertNotNull(ac.getBattleState());
@@ -47,21 +46,22 @@ public class ApplicationContextUnitTest {
 		Assert.assertEquals(1, ac.getLevel());
 		Assert.assertEquals(10, ac.getNextLevel());
 		Assert.assertEquals(0, ac.getScore());
+	}
+	
+	@Test
+	public void shouldExplore() {
+		when(RandomGenerator.getRandomNumber(5)).thenReturn(0);
+		ac = new ApplicationContext();
 		
-		int actual = ac.explore();
+		int actual = ac.battle();
 		Assert.assertEquals(0, actual);
 	}
 	
 	@Test
 	public void shouldBattle() {
-		// given 
 		when(RandomGenerator.getRandomNumber(5)).thenReturn(5);
 		ac = new ApplicationContext();
-
-		// when
-		ac = new ApplicationContext();
 		
-		// then
 		int actual = ac.battle();
 		Assert.assertEquals(0, actual);
 	}
