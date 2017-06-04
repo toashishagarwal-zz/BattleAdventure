@@ -20,7 +20,7 @@ import com.ba.state.State;
  */
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(ApplicationContext.class)
+@PrepareForTest({ApplicationContext.class, RandomGenerator.class})
 public class ApplicationContextUnitTest {
 	
 	@Mock private ExploreState es;
@@ -33,11 +33,13 @@ public class ApplicationContextUnitTest {
 	public void setup() throws Exception {
 		ac = new ApplicationContext();
 		PowerMockito.whenNew(ApplicationContext.class).withNoArguments().thenReturn(ac);
+		PowerMockito.mockStatic(RandomGenerator.class);
 	}
 	
 	@Test
 	public void shouldInstantiate() {
 		when(s.explore()).thenReturn(0);
+		when(RandomGenerator.getRandomNumber(5)).thenReturn(0);
 		ac = new ApplicationContext();
 
 		Assert.assertNotNull(ac.getBattleState());
@@ -48,8 +50,19 @@ public class ApplicationContextUnitTest {
 		
 		int actual = ac.explore();
 		Assert.assertEquals(0, actual);
+	}
+	
+	@Test
+	public void shouldBattle() {
+		// given 
+		when(RandomGenerator.getRandomNumber(5)).thenReturn(5);
+		ac = new ApplicationContext();
 
-		actual = ac.battle();
+		// when
+		ac = new ApplicationContext();
+		
+		// then
+		int actual = ac.battle();
 		Assert.assertEquals(0, actual);
 	}
 	
