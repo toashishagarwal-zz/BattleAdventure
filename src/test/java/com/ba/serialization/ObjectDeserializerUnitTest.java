@@ -1,6 +1,7 @@
 package com.ba.serialization;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.io.FileInputStream;
@@ -36,16 +37,16 @@ public class ObjectDeserializerUnitTest {
 	public void shouldDeserialize() throws IOException, ClassNotFoundException {
 		when(in.readObject()).thenReturn("new String");
 		ObjectDeserializer deserializer = new ObjectDeserializer();
-		String actual = (String)deserializer.deserialize();
+		String actual = (String)deserializer.deserialize(Mockito.anyString());
 		assertTrue("new String".equals(actual));
 	}
 
 	@Test
 	public void shouldThrowExceptionWhenDeserialize() throws Exception {
 		ObjectDeserializer spy = PowerMockito.spy(new ObjectDeserializer());
-		PowerMockito.doThrow(new IOException()).when(spy, "readFromClasspathResource");
-		PowerMockito.doThrow(new IOException()).when(spy, "readFromFile");
-		String actual = (String)spy.deserialize();
+		PowerMockito.doThrow(new IOException()).when(spy, "readFromClasspathResource", anyString());
+		PowerMockito.doThrow(new IOException()).when(spy, "readFromFile", anyString());
+		String actual = (String)spy.deserialize(Mockito.anyString());
 	}
 }
 

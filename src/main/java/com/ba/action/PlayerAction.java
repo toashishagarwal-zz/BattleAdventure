@@ -11,6 +11,7 @@ import com.ba.serialization.ObjectSerializer;
 
 public class PlayerAction {
 	private ConsoleWriterImpl writer= new ConsoleWriterImpl();
+	private String name="";
 	
 	public void play(final char key, ApplicationContext ac) {
 		if (key == 'L') {																								// Explore section
@@ -34,18 +35,19 @@ public class PlayerAction {
 		} else if (key == 'C') {																				// New Character section
 			writer.write("Enter the name of character : ");
 			Scanner scanner = new Scanner(System.in);
-			String name = scanner.nextLine();
+			name = scanner.nextLine();
 			writer.write("Current warrior set to " + name + "!!");
 		} else if (key == 'S') {																				// Save section
 			ObjectSerializer serializer = new ObjectSerializer();
-			serializer.serialize(ac);
+			serializer.serialize(ac, "config.dat");
+			serializer.serialize(name, "character.dat");
 			writer.write("Your adventure is saved successfully !");
 		} else if (key == 'O') {	
 			ObjectDeserializer deserializer = new ObjectDeserializer(); 	// Open saved game
-			ApplicationContext loadedAC = (ApplicationContext)deserializer.deserialize();
+			ApplicationContext loadedAC = (ApplicationContext)deserializer.deserialize("config.dat");
 			adapt(ac, loadedAC);
-			System.out.println("level="+ac.getLevel() + "\t score=" + ac.getScore());
-			writer.write("Loaded your adventure ! ");
+			name = (String)deserializer.deserialize("character.dat");
+			writer.write("Welcome back " + name + ". Loaded your adventure ! ");
 		}else {																													// Anything else
 			writer.write("Invalid key .. try again !! ");
 			return;

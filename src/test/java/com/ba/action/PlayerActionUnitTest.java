@@ -128,7 +128,8 @@ public class PlayerActionUnitTest {
 		// when
 		player.play('S', ac);
 		
-		Mockito.verify(serializer,times(1)).serialize(ac);
+		Mockito.verify(serializer,times(1)).serialize(ac, "config.dat");
+		Mockito.verify(serializer,times(1)).serialize("", "character.dat");
 		Mockito.verify(writer,times(1)).write("Your adventure is saved successfully !");
 	}
 
@@ -136,12 +137,16 @@ public class PlayerActionUnitTest {
 	public void shouldOpen() throws Exception {
 		PowerMockito.whenNew(ObjectDeserializer.class).withNoArguments().thenReturn(deSerializer);
 		
-		when(deSerializer.deserialize()).thenReturn(new ApplicationContext());
+		String name = "ABC";
+		when(deSerializer.deserialize("config.dat")).thenReturn(new ApplicationContext());
+		when(deSerializer.deserialize("character.dat")).thenReturn(name);
+		
+		String expectedMessage = "Welcome back " + name + ". Loaded your adventure ! ";
 		
 		// when
 		player.play('O', ac);
 
-		Mockito.verify(deSerializer,times(1)).deserialize();
-		Mockito.verify(writer,times(1)).write("Loaded your adventure ! ");
+		Mockito.verify(deSerializer,times(2)).deserialize(Mockito.anyString());
+		Mockito.verify(writer,times(1)).write(expectedMessage);
 	}
 }

@@ -9,14 +9,12 @@ import java.io.ObjectOutputStream;
  */
 public class ObjectSerializer {
 	
-	private final String filename = "config.dat";
-
 	public ObjectSerializer() { }
 
-	public void serialize(Object o) {
+	public void serialize(Object o, String file) {
 		ObjectOutputStream objectOutputStream=null;
 		try {
-			objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));
+			objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
 			objectOutputStream.writeObject(o);
 			objectOutputStream.flush();
 		} catch (IOException e) {
@@ -25,7 +23,7 @@ public class ObjectSerializer {
 			try {
 				objectOutputStream.close();
 			} catch (IOException e) {
-				System.out.println("IOException occurred " + e.getMessage());	
+				System.out.println("IOException occurred " + e.getMessage());
 			}
 		}
 	}

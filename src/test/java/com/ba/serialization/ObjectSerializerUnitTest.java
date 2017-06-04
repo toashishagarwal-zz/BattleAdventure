@@ -40,7 +40,7 @@ public class ObjectSerializerUnitTest {
 	@Test
 	public void shouldSerialize() throws Exception {
 		Integer i = new Integer(RandomGenerator.getRandomNumber(5));
-		serializer.serialize(i);
+		serializer.serialize(i, Mockito.anyString());
 		
 		Mockito.verify(out, Mockito.times(1)).writeObject(i);
 		Mockito.verify(out, Mockito.times(1)).flush();
@@ -52,6 +52,6 @@ public class ObjectSerializerUnitTest {
 		doThrow(new IOException()).when(out).writeObject(i);
 		doThrow(new IOException()).when(out).close();
 		
-		serializer.serialize(i);
+		serializer.serialize(i, Mockito.anyString());
 	}
 }
