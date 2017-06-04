@@ -53,7 +53,7 @@ public class ApplicationContextUnitTest {
 		when(RandomGenerator.getRandomNumber(5)).thenReturn(0);
 		ac = new ApplicationContext();
 		
-		int actual = ac.battle();
+		int actual = ac.explore();
 		Assert.assertEquals(0, actual);
 	}
 	
