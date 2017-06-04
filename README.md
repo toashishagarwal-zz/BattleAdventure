@@ -21,8 +21,8 @@ Battle Adventure is a role playing, terminal-based game in which the player need
 	The coverage report gets created in the location - BattleAdventure/target/site/cobertura/index.html
 
 3 - To extend the code -
-        * To add a new state define its class and embed that in the ApplicationContext.java
-        * To map additional key operations add the option in PlayerAction.java and Menu.java
+    a) To add a new state define its class and embed that in the ApplicationContext.java
+    b) To map additional key operations add the option in PlayerAction.java and Menu.java
 
 # Additional Notes
 1 - This application has been developed using the STATE design pattern where the 2 states are - ExploreState 
