@@ -45,6 +45,10 @@ public class PlayerAction {
 		} else if (key == 'O') {	
 			ObjectDeserializer deserializer = new ObjectDeserializer(); 	// Open saved game
 			ApplicationContext loadedAC = (ApplicationContext)deserializer.deserialize("config.dat");
+			if(null == loadedAC) {
+				writer.write("Nothing to load !!");
+				return;
+			}
 			adapt(ac, loadedAC);
 			name = (String)deserializer.deserialize("character.dat");
 			writer.write("Welcome back " + name + ". Loaded your adventure ! ");

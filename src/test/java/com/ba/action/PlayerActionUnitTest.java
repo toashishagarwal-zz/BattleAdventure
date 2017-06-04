@@ -149,4 +149,14 @@ public class PlayerActionUnitTest {
 		Mockito.verify(deSerializer,times(2)).deserialize(Mockito.anyString());
 		Mockito.verify(writer,times(1)).write(expectedMessage);
 	}
+
+	@Test
+	public void shouldNotLoadOnOpen() throws Exception {
+		PowerMockito.whenNew(ObjectDeserializer.class).withNoArguments().thenReturn(deSerializer);
+		when(deSerializer.deserialize("config.dat")).thenReturn(null);
+		
+		player.play('O', ac);
+		
+		Mockito.verify(writer,times(1)).write("Nothing to load !!");
+	}
 }
