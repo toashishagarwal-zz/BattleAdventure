@@ -37,7 +37,7 @@ This makes playing very convenient with the left hand focusing on A and right fo
 
 4 - How did I choose BLUE and WHITE combo? 
 Based on the site - http://blog.usabilla.com/how-to-design-for-color-blindness/ 
-This site (and many other resourcces) lists the different combo of colors which should be avoided
+This site (and many other resources) lists the different combo of colors which should be avoided
 to make the UI friendly for color blind people. BLUE appears the same for different types of color blind people
 
 5 - Some of the best practices followed in the code are - 
